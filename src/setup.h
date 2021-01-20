@@ -1,3 +1,7 @@
+void initFlowSensor();
+void initEeprom();
+void WaktuRTC();
+
 void setup()
 {
   //delay(7000); //delay  detik untuk memastikan modul sim sudah siap 
@@ -11,7 +15,7 @@ void setup()
   
   //MODUL RTC
   Wire.begin();
-  DS3231_init(DS3231_INTCN);
+  DS3231_init(DS3231_CONTROL_INTCN);
   //WaktuRTC(); //Perbaiki waktu
 
   //SENOR DEBIT

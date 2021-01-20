@@ -10,6 +10,16 @@
  * getFilename2(..) = membuat file data tiap bulan isinya data volume akhir tiap hari
  */
 
+void InterruptDebitAir();
+void HitungDebitAir();
+void HitungVolumeAir();
+void SendMessage();
+uint16_t EEPROM16_Read(uint8_t);
+void EEPROM16_Write(uint8_t,uint16_t);
+void HapusEeprom();
+void getFilename(int,int,int);
+void getFilename2(int,int);
+
 void InterruptDebitAir()
 {
   frekuensi_aliran++;

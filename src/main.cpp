@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "global.h"
-#include "setup.h"
 #include "function.h"
+#include "setup.h"
 
 void loop() 
 {
