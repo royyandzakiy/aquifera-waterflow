@@ -2,10 +2,11 @@
 //Tiap jam akan disimpan data berupa jumlah volume air pada jam tersebut sehingga
 //dapat diketahui pengeluaran terbesar pada jam-jam berapa saja
 
+#include <Arduino.h>
 #include <EEPROM.h>
 #include <SoftwareSerial.h>
 #include <Wire.h>
-#include <ds3231.h>
+#include <DS3231.h>
 SoftwareSerial sim(10, 9);
 #include <SD.h>
 #include <SPI.h>
