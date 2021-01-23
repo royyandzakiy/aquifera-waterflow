@@ -1,5 +1,5 @@
-void initFlowSensor();
-void initEeprom();
+void setupFlowSensor();
+void resetEeprom();
 void WaktuRTC();
 
 void setup()
@@ -7,47 +7,63 @@ void setup()
   //delay(7000); //delay  detik untuk memastikan modul sim sudah siap 
   Serial.begin(9600);
   EspSerial.begin(115200);
-  EspSerial.println("Setup initialize...");
+
+  while (!Serial);
+  Serial.println("Setup: Initialize...");
+  EspSerial.println("Setup: Initialize...");
+
 
   //MODUL SIM
   _buffer.reserve(50);
-  Serial.println("Sistem Started...");
   sim.begin(9600);
   //ReceiveMode(); //masih percobaan nanti saja di V.3
   
   //MODUL RTC
-  Wire.begin();
-  DS3231_init(DS3231_CONTROL_INTCN);
+  setupRTC();
   //WaktuRTC(); //Perbaiki waktu
 
   //SENOR DEBIT
-  initFlowSensor();
-  //initEeprom(); //membuat semua isi eeprom bernilai 0
+  setupFlowSensor(); // initializes flow sensor through pin connections
+  //resetEeprom(); // resets all eeprom values to 0, turn on if ...?
   delay(1000);
 
   //MODUL MIKROSD
-  while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
-  }
-  Serial.print("Initializing SD card...");
- 
-  if (!SD.begin(4)) {
-    Serial.println("initialization failed!");
-    while (1);
-  }
-  Serial.println("initialization done.");
-  EspSerial.println("initialization done.");
+  setupSDCard();
+
+  // Setup done
+  Serial.println("Setup: Initialization done.");
+  EspSerial.println("Setup: Initialization done.");
 }
 
-void initFlowSensor() 
+void setupSDCard() {
+  Serial.print("Setup: Initializing SD Card...");
+ 
+  if (!SD.begin(4)) {
+    Serial.println("Setup: Initialization SD Card failed!");
+    while (1);
+  }
+}
+
+void setupRTC() {
+  // initializes RTC
+  Serial.print("Setup: Initializing RTC...");
+  
+  Wire.begin();
+  DS3231_init(DS3231_CONTROL_INTCN);
+}
+
+void setupFlowSensor() 
 {
+  // initializes flow sensor
+  Serial.print("Setup: Initializing Flow Sensor...");
+ 
   pinMode(FLOWSENSOR_PIN, INPUT);
   digitalWrite(FLOWSENSOR_PIN, HIGH);
   attachInterrupt(0,InterruptDebitAir,RISING); // di pin 2
   sei();
 }
 
-void initEeprom()
+void resetEeprom()
 {
   for (int i=0; i<25; i++) //Eeprom dari 0 - 24 akan dikembalikan menjadi 0 
   {
