@@ -11,7 +11,11 @@ SoftwareSerial sim(10, 9);
 #include <SD.h>
 #include <SPI.h>
 #include "credentials.h"
+#include <SoftwareSerial.h>
 //======================================================================//
+
+// Serial
+SoftwareSerial EspSerial(10, 11); // RX, TX
 
 //MODUL SIM
 int     _timeout;

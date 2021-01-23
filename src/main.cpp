@@ -54,6 +54,17 @@ void loop()
   Serial.print("\t V = ");
   Serial.println(VolumeAir); 
 
+  if(Serial.available()) {
+    String str = Serial.readStringUntil('\n');
+    Serial.println(str);
+    EspSerial.println(str);
+    delay(10);
+  }
+  if(EspSerial.available()) {
+    String str = EspSerial.readStringUntil('\n');
+    Serial.println(str);
+    delay(10);
+  }
 }
 
 
