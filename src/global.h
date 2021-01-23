@@ -15,7 +15,7 @@ SoftwareSerial sim(10, 9);
 //======================================================================//
 
 // Serial
-SoftwareSerial EspSerial(10, 11); // RX, TX
+SoftwareSerial EspSerial(5, 6); // RX, TX
 
 //MODUL SIM
 int     _timeout;

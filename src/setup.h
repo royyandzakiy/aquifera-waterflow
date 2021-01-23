@@ -1,12 +1,14 @@
 void setupFlowSensor();
 void resetEeprom();
-void WaktuRTC();
+void setupRTC();
+void setTimeRTC();
+void setupSDCard();
 
 void setup()
 {
   //delay(7000); //delay  detik untuk memastikan modul sim sudah siap 
   Serial.begin(9600);
-  EspSerial.begin(115200);
+  EspSerial.begin(9600);
 
   while (!Serial);
   Serial.println("Setup: Initialize...");
