@@ -6,7 +6,7 @@
 #include <EEPROM.h>
 #include <SoftwareSerial.h>
 #include <Wire.h>
-#include <DS3231.h>
+#include <ds3231.h>
 SoftwareSerial sim(10, 9);
 #include <SD.h>
 #include <SPI.h>
