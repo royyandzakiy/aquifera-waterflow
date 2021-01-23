@@ -20,7 +20,7 @@ void setup()
   
   //MODUL RTC
   setupRTC();
-  //WaktuRTC(); //Perbaiki waktu
+  setTimeRTC(); //Perbaiki waktu
 
   //SENOR DEBIT
   setupFlowSensor(); // initializes flow sensor through pin connections
@@ -47,7 +47,7 @@ void setupSDCard() {
 void setupRTC() {
   // initializes RTC
   Serial.print("Setup: Initializing RTC...");
-  
+
   Wire.begin();
   DS3231_init(DS3231_CONTROL_INTCN);
 }
@@ -71,7 +71,7 @@ void resetEeprom()
   }
 }
 
-void WaktuRTC()
+void setTimeRTC()
 {
   t.hour=12; 
   t.min=30;
